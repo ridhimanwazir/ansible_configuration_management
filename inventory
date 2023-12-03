@@ -1,0 +1,2 @@
+[ec2_instance]
+"define the ip of ec2 where you want to install nginx and has docker available for installing nginx"

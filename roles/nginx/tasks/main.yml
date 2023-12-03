@@ -1,0 +1,13 @@
+---
+
+- name: "install and configure nginx on ec2"
+  include_tasks: ec2.yml
+  tags:
+    - ec2
+    - never
+
+- name: "install and configure nginx on docker"
+  include_tasks: docker.yml
+  tags:
+    - docker
+    - never

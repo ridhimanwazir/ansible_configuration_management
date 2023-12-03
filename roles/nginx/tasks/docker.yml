@@ -1,0 +1,21 @@
+- name: Create Ubuntu Docker container
+  docker_container:
+    name: ubuntu_nginx_container
+    image: ubuntu:latest
+    state: started
+    ports:
+      - "8000:80"  # Map port 8000 on the host to port 80 in the container
+    command: sleep infinity  # Keep the container running
+  tags:
+    - docker
+
+- name: Install NGINX in the Docker container
+  docker_container:
+    name: ubuntu_nginx_container
+    image: ubuntu:latest
+    state: started
+    ports:
+      - "8001:80"
+    command: /bin/bash -c "apt-get update && apt-get install -y nginx && service nginx start && tail -f /dev/null"
+  tags:
+    - docker
