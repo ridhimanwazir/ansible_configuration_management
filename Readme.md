@@ -26,7 +26,8 @@ This Ansible role automates the installation and configuration of NGINX on both 
 3. Run the playbook:
 
     ```bash
-    ansible-playbook -i your_inventory_file main.yml
+     ansible-playbook -i inventory --tags docker playbook.yml -vvv
+     ansible-playbook -i inventory --tags ec2 playbook.yml -vvv
     ```
 
 4. Access NGINX:
@@ -38,27 +39,12 @@ This Ansible role automates the installation and configuration of NGINX on both 
 
 - `roles/nginx`: Ansible role directory.
   - `defaults`: Default variables for the role.
-  - `files`: Static files (e.g., NGINX configuration files).
   - `handlers`: Handlers for the role.
-  - `meta`: Metadata for the role (e.g., role dependencies).
   - `tasks`: Main tasks for the role.
-    - `main.yml`: Tasks for installing and configuring NGINX.
-  - `templates`: Template files used by the role.
+    - `ec2.yml`: Tasks for installing and configuring NGINX on ec2.
+    - `docker.yml`: Tasks for installing and configuring NGINX on the docker container.
+    - `main.yml`: Tasks for installing and configuring NGINX on docker and ec2 based on tags
   - `vars`: Variables for the role.
-- `main.yml`: Main playbook to orchestrate tasks.
-- `your_inventory_file`: Ansible inventory file.
+- `playbook.yml`: Main playbook to orchestrate tasks.
+- `your_inventory_file`: Ansible inventory file for mapping ec2 IP or hostname
 
-## Customization
-
-You can customize the playbook and the `nginx` role according to your specific requirements:
-
-- Adjust ports and configurations in `main.yml`.
-- Modify NGINX configurations in `roles/nginx/files` and `roles/nginx/templates`.
-
-## Contributing
-
-Feel free to contribute by opening issues, providing feedback, or submitting pull requests.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
